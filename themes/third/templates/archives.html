@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} - Архив{% endblock %}
+{% block head %}
+{{ super() }}
+	<link rel="canonical" href="{{ SITEURL }}/{{ ARCHIVES_URL }}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+<section>
+	<h1>Archives</h1>
+	{% for article in dates %}
+	<article>
+		<time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
+		--><h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+	</article>
+	{% endfor %}
+</section>
+</div>
+{% endblock content %}
