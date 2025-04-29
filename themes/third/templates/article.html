@@ -14,7 +14,7 @@
 	<article role="article">
 		<header>
 			<h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1><!--
-			--><time datetime="{{ article.date.isoformat() }}">Le {{ article.locale_date }}</time><!--
+			--><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
 			--><p class="category">{{ article.category }}</p>
 		</header>
 		<div class="content">
