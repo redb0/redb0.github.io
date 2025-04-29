@@ -50,6 +50,9 @@ Title: CV
 <img src="https://img.shields.io/badge/Jupyter Notebook-999999?logo=jupyter" title="Jupyter Notebook" alt="Jupyter Notebook" height="40"/>
 <img src="https://img.shields.io/badge/Material for MkDocs-999999?logo=materialformkdocs" title="Material for MkDocs" alt="Material for MkDocs" height="40"/>
 <img src="https://img.shields.io/badge/Pytest-999999?logo=pytest" title="Pytest" alt="Pytest" height="40"/>
+<img src="https://img.shields.io/badge/SQLAlchemy-999999?logo=sqlalchemy" title="SQLAlchemy" alt="SQLAlchemy" height="40"/>
+<img src="https://img.shields.io/badge/GitLab-999999?logo=gitlab" title="GitLab" alt="GitLab" height="40"/>
+<img src="https://img.shields.io/badge/Dash-999999?logo=dash" title="Dash" alt="Dash" height="40"/>
 
 ---
 
