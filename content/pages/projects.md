@@ -166,6 +166,7 @@ Python библиотеки и предоставляет функционал �
 
 <img src="https://img.shields.io/badge/Python-999999?logo=python" title="Python" alt="Python" height="40"/>
 <img src="https://img.shields.io/badge/Django-999999?logo=django" title="Django" alt="Django" height="40"/>
+<img src="https://img.shields.io/badge/Dash-999999?logo=dash" title="Dash" alt="Dash" height="40"/>
 <img src="https://img.shields.io/badge/JavaScript-999999?logo=javascript" title="JavaScript" alt="JavaScript" height="40"/>
 <img src="https://img.shields.io/badge/PostgreSQL-999999?logo=postgresql" title="PostgreSQL" alt="PostgreSQL" height="40"/>
 <img src="https://img.shields.io/badge/Celery-999999?logo=celery" title="Celery" alt="Celery" height="40"/>
