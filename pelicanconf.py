@@ -61,6 +61,7 @@ USE_FOLDER_AS_CATEGORY = False
 
 MARKDOWN = {
     "extension_configs": {
+        "markdown.extensions.admonition": {},
         "markdown.extensions.codehilite": {"css_class": "highlight"},
         "markdown.extensions.extra": {},
         "markdown.extensions.meta": {},
