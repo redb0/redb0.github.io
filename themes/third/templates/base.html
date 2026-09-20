@@ -15,17 +15,14 @@
 	<meta charset="utf-8" />
 	<meta name="description" content="{% block description %}{{ SITEDESC }}{% endblock %}">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-TileColor" content="#fafbfc">
 	<meta name="theme-color" content="#ffffff">
 	<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
-	<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	{% assets filters="cssmin", output="style.min.css", "css/normalize.css", "css/pygments.css", "css/style.css", "css/admonition.css" %}
 		<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
 	{% endassets %}
-	<!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"> -->
-	<!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"> -->
-	<!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
-	<link rel="manifest" href="/site.webmanifest">
+	<link rel="icon" href="{{ SITEURL }}/favicon.ico">
+	<link rel="manifest" href="{{ SITEURL }}/site.webmanifest">
 	{% endblock head %}
 </head>
 <body role="document">
@@ -51,21 +48,19 @@
 			{% endblock content %}
 		</div>
 		<footer id="footer" role="contentinfo">
-			<p><small>{% if COPYRIGHT_YEAR %}&copy; Copyright {{ COPYRIGHT_YEAR }} - {{ AUTHOR }}<br>{% endif %} Сайт сгенерирован с помощью <a href="https://blog.getpelican.com/">Pelican</a>{% if HOSTING_NAME %} и размещен на <a href="{{ HOSTING_URL or '#' }}">{{ HOSTING_NAME }}</a></small>{% endif %}</p>
+			<p><small>{% if COPYRIGHT_YEAR %}&copy; {{ COPYRIGHT_YEAR }} {{ AUTHOR }}<br>{% endif %} Сайт сгенерирован с помощью <a href="https://blog.getpelican.com/">Pelican</a>{% if HOSTING_NAME %} и размещен на <a href="{{ HOSTING_URL }}">{{ HOSTING_NAME }}</a>{% endif %}</small></p>
 			{% if SOCIAL %}
 			<div class="social-icons">
 			{% for link in SOCIAL %}
 				{% if link|length >= 2 %}
-				<span><a href="{{ link[1] }}" title="{{ link[0] }}">{% if link|length > 2 %}{{ link[2] }}{% else %}{{ link[0] }}{% endif %}</a></span>
+				<span><a href="{{ link[1] }}" title="{{ link[0] }}" target="_blank" rel="me noopener noreferrer">{% if link|length > 2 %}{{ link[2] }}{% else %}{{ link[0] }}{% endif %}</a></span>
 				{% endif %}
 			{% endfor %}
 			</div>
 			{% endif %}
 		</footer>
 	</div>
-	{% assets filters="rjsmin", output="main.min.js", "js/main.js" %}
-	<script type="text/javascript" src="{{ SITEURL }}/{{ ASSET_URL }}"></script>
-	{% endassets %}
-	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+	<script src="{{ SITEURL }}/theme/js/typed.js"></script>
+	<script src="{{ SITEURL }}/theme/js/main.js"></script>
 </body>
 </html>

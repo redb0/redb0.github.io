@@ -42,13 +42,14 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
 
-HOSTING_NAME = "localhost"
 COPYRIGHT_YEAR = date.today().year
 THEME = "themes/third"
 
 STATIC_PATHS = ("extras",)
 EXTRA_PATH_METADATA = {
     "extras/favicon.ico": {"path": "favicon.ico"},
+    "extras/robots.txt": {"path": "robots.txt"},
+    "extras/site.webmanifest": {"path": "site.webmanifest"},
 }
 
 PLUGINS = [webassets, sitemap]

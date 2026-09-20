@@ -1,6 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function() {
     // Pick a random buzzword to kick some asses
 	// from https://calendar.vpogiba.info/otro/unicode.php
 	var buzzwords = [
@@ -17,7 +17,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         "&#128013;"
 	];
 
-	var container = document.getElementById("buzzword")
+	var container = document.getElementById("buzzword");
+	if (!container || typeof Typed === "undefined") {
+		return;
+	}
 	// element content must be cleaned for typed.js
 	container.innerHTML = "";
 
@@ -27,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		loop: false,
 		showCursor: true,
 		onComplete: function() {
-			window.setTimeout(function(){document.querySelectorAll(".typed-cursor")[0].style.display = "none"}, 333);
+			var cursor = document.querySelector(".typed-cursor");
+			if (cursor) {
+				window.setTimeout(function(){ cursor.style.display = "none"; }, 333);
+			}
 		}
 	});
 });
