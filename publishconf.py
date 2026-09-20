@@ -21,5 +21,5 @@ DELETE_OUTPUT_DIRECTORY = True
 # DISQUS_SITENAME = ""
 # GOOGLE_ANALYTICS = ""
 
-# Custom settings
-# HOSTING_NAME, HOSTING_URL = "GitHub Pages", "https://pages.github.com/"
+HOSTING_NAME = "GitHub Pages"
+HOSTING_URL = "https://pages.github.com/"
