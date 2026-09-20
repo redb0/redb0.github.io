@@ -327,6 +327,7 @@ article .content .highlight {
 #footer .social-icons svg {
 	width: 2rem;
 	height: 2rem;
+	fill: currentColor;
 }
 
 #footer .social-icons span + span {

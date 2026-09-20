@@ -5,7 +5,8 @@ from pelican.plugins import sitemap, webassets
 AUTHOR = "Vladimir Voronov"
 SITENAME = "Vladimir Voronov"
 SITEURL = ""
-SITEDESC = "Python-разработчик. Backend: FastAPI, PostgreSQL"
+SITEROLE = "Python-разработчик"
+SITEDESC = f"{SITEROLE}. Backend: FastAPI, PostgreSQL"
 
 PATH = "content"
 
