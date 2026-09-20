@@ -1,9 +1,9 @@
 Slug: python_type_challenges
 Date: 2025/04/28
 Category: Python
+Tags: typing, python
+Summary: Для тренировки и проверки навыков типизации в Python есть челлендж Python Type Challenges: задания по аннотациям прямо в браузере.
 Title: Прохождение Python Type Challenges
-
-# Прохождение Python Type Challenges
 
 Для тренировки и проверки навыков типизации в Python есть интересный
 челлендж - [Python Type Challenges](https://python-type-challenges.zeabur.app/).
@@ -41,7 +41,8 @@ def foo():
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Any
@@ -49,6 +50,8 @@ from typing import Any
 def foo(x: Any):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -69,12 +72,15 @@ def foo():
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: dict[str, str]):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -92,13 +98,16 @@ foo({"foo": 1})  # Ошибочный вариант
 my_list = []
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Final
 
 my_list: Final[list[int]] = []
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -119,12 +128,15 @@ def foo(**kwargs):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(**kwargs: int | str):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -144,12 +156,15 @@ def foo(x):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: list[str]):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -169,12 +184,15 @@ def foo(x):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: int | None = None):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -196,12 +214,15 @@ def foo(x):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: int):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -221,12 +242,15 @@ def foo():
     return 1
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo() -> int:
     return 1
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -247,12 +271,15 @@ def foo(x):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: tuple[str, int]):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -269,11 +296,14 @@ foo((1, "foo"))  # Ошибочный вариант
 Объявите тип `Vector`, который представляет собой список чисел с плавающей
 точкой.
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 type Vector = list[int | float]
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -297,12 +327,15 @@ def foo(x):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: str | int):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -324,11 +357,14 @@ from typing import Any
 a: Any
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 a: int
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -367,7 +403,8 @@ def run_async():
     ...
 ```
 
-Решение (вариант 1):
+<details>
+<summary>Решение (вариант 1)</summary>
 
 ```python
 from collections.abc import Awaitable
@@ -376,7 +413,10 @@ def run_async(func: Awaitable[int]):
     ...
 ```
 
-Решение (вариант 2):
+</details>
+
+<details>
+<summary>Решение (вариант 2)</summary>
 
 !!! tip
     В качестве замены `Awaitable` можно указать любых наследников, например класс `Coroutine`
@@ -387,6 +427,8 @@ from collections.abc import Coroutine
 def run_async(func: Coroutine[None, None, int]):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -417,13 +459,16 @@ run_async(async_function2())  # Ошибочный вариант
 SingleStringInput = ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Callable
 
 SingleStringInput = Callable[[str], None]
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -460,7 +505,8 @@ class Foo:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import ClassVar
@@ -468,6 +514,8 @@ from typing import ClassVar
 class Foo:
     bar: ClassVar[int]
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -490,7 +538,8 @@ def decorator(func):
     return func
 ```
 
-Решение (вариант 1, для версий >= 3.12):
+<details>
+<summary>Решение (вариант 1, для версий >= 3.12)</summary>
 
 ```python
 from typing import Callable
@@ -500,9 +549,12 @@ def decorator[**P, R](func: Callable[P, R]) -> Callable[P, R]:
     return func
 ```
 
+</details>
+
 Подробнее см. в [документации](https://docs.python.org/3/library/typing.html#typing.ParamSpec).
 
-Решение (вариант 2):
+<details>
+<summary>Решение (вариант 2)</summary>
 
 ```python
 from typing import Callable
@@ -511,6 +563,8 @@ from typing import Callable
 def decorator[T: Callable](func: T) -> T:
     return func
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -540,12 +594,15 @@ def foo(x):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def foo(x: tuple[()]):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -565,12 +622,15 @@ def add(a, b):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def add[T](a: T, b: T) -> T:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -595,12 +655,15 @@ def add(a, b):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def add[T: (int, str)](a: T, b: T) -> T:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -625,12 +688,15 @@ def add(a):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def add[T: int](a: T) -> T:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -656,12 +722,15 @@ class Foo:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 class Foo:
     bar: int
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -682,7 +751,8 @@ def foo(direction):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Literal
@@ -690,6 +760,8 @@ from typing import Literal
 def foo(direction: Literal['left', 'right']):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -713,7 +785,8 @@ def execute_query(sql, parameters: Iterable[str] = ...):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Iterable, LiteralString
@@ -722,6 +795,8 @@ from typing import Iterable, LiteralString
 def execute_query(sql: LiteralString, parameters: Iterable[str] = ...):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -756,7 +831,8 @@ class Foo:
         ...
 ```
 
-Решение (вариант 1):
+<details>
+<summary>Решение (вариант 1)</summary>
 
 ```python
 import typing
@@ -766,7 +842,10 @@ class Foo:
         ...
 ```
 
-Решение (вариант 2, устаревший):
+</details>
+
+<details>
+<summary>Решение (вариант 2, устаревший)</summary>
 
 ```python
 from typing import TypeVar
@@ -777,6 +856,8 @@ class Foo:
     def return_self(self: Self) -> Self:
         ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -797,7 +878,8 @@ sf: SubclassOfFoo = Foo().return_self()  # Ошибочный вариант
 - `age` в виде целого числа
 - `school` в виде строки
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import TypedDict
@@ -808,6 +890,8 @@ class Student(TypedDict):
     age: int
     school: str
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -829,7 +913,8 @@ a: Student = {"name": "Tom", "age": 2}  # Ошибочный вариант
 - `age` в виде целого числа
 - `school` в виде строки (опциональное поле)
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import TypedDict, NotRequired
@@ -839,6 +924,8 @@ class Student(TypedDict):
     age: int
     school: NotRequired[str]
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -864,7 +951,8 @@ assert Student(name="Tom", age=15, school="Hogwarts") ==  dict(name="Tom", age=1
 - address в виде строки (опциональное)
 - email в виде строки (опциональное)
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import TypedDict, Required
@@ -877,6 +965,8 @@ class Person(TypedDict, total=False):
     address: str
     email: str
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -917,7 +1007,8 @@ def foo(**kwargs):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import TypedDict, Unpack
@@ -931,6 +1022,8 @@ class Person(TypedDict):
 def foo(**kwargs: Unpack[Person]):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -980,7 +1073,8 @@ def read_buffer(b):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Buffer
@@ -988,6 +1082,8 @@ from collections.abc import Buffer
 def read_buffer(b: Buffer):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1023,7 +1119,8 @@ class SingleStringInput:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Protocol
@@ -1032,6 +1129,8 @@ class SingleStringInput(Protocol):
     def __call__(self, name: str) -> None:
         ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1065,7 +1164,8 @@ def decorator(message):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Callable
@@ -1073,6 +1173,8 @@ from collections.abc import Callable
 def decorator[T: Callable](message: str) -> T:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1102,7 +1204,8 @@ class Descriptor:
         ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Any, Self, overload
@@ -1121,6 +1224,8 @@ class Descriptor:
         """you don't need to implement this"""
         ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1156,7 +1261,8 @@ class MyClass:
         return copied_object
 ```
 
-Решение (вариант 1):
+<details>
+<summary>Решение (вариант 1)</summary>
 
 ```python
 class MyClass:
@@ -1169,7 +1275,10 @@ class MyClass:
         return copied_object
 ```
 
-Решение (вариант 2):
+</details>
+
+<details>
+<summary>Решение (вариант 2)</summary>
 
 ```python
 from __future__ import annotations
@@ -1183,7 +1292,10 @@ class MyClass:
         return copied_object
 ```
 
-Решение (вариант 3, но изменен код задачи):
+</details>
+
+<details>
+<summary>Решение (вариант 3, но изменен код задачи)</summary>
 
 ```python
 from typing import Self
@@ -1196,6 +1308,8 @@ class MyClass:
         copied_object = self.__class__(x=self.x)
         return copied_object
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1216,7 +1330,8 @@ def gen():
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Generator
@@ -1224,6 +1339,8 @@ from collections.abc import Generator
 def gen() -> Generator[int, str, None]:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1255,7 +1372,8 @@ class Stack:
         return self.items.pop()
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 class Stack[T]:
@@ -1268,6 +1386,8 @@ class Stack[T]:
     def pop(self) -> T:
         return self.items.pop()
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1291,7 +1411,8 @@ def never_call_me(arg):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Never
@@ -1299,6 +1420,8 @@ from typing import Never
 def never_call_me(arg: Never):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1328,7 +1451,8 @@ def stop() -> Never:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Never
@@ -1336,6 +1460,8 @@ from typing import Never
 def stop() -> Never:
     raise ValueError("Error!")
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1358,7 +1484,8 @@ def process(response: int | bytes | None) -> str | None | tuple[int, str]:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import overload
@@ -1378,6 +1505,8 @@ def process(response: None) -> None:
 def process(response: int | bytes | None) -> str | None | tuple[int, str]:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1410,7 +1539,8 @@ def foo(value, flag):
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import overload, Any, Literal
@@ -1434,6 +1564,8 @@ def foo[T](value: T, flag: Any) -> T:
 def foo(value: Any, flag: Any) -> Any:
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1463,7 +1595,8 @@ class Wrap:
         return self.func(*args, **kwargs)
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Callable
@@ -1475,6 +1608,8 @@ class Wrap[**P, R]:
     def __call__(self, *args: P.args, **kwargs: P.kwargs) ->R:
         return self.func(*args, **kwargs)
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1508,7 +1643,8 @@ class SupportsQuack:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Protocol
@@ -1517,6 +1653,8 @@ class SupportsQuack(Protocol):
     def quack(self) -> None:
         ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1542,19 +1680,25 @@ dog: SupportsQuack = Dog()  # Ошибочный вариант
 Tree = ...
 ```
 
-Решение (python >= 3.12):
+<details>
+<summary>Решение (python >= 3.12)</summary>
 
 ```python
 type Tree = dict[str, "Tree"]
 ```
 
-Решение (python < 3.12):
+</details>
+
+<details>
+<summary>Решение (python < 3.12)</summary>
 
 ```python
 from typing import TypeAlias
 
 Tree: TypeAlias = dict[str, 'Tree']
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1583,12 +1727,15 @@ def make_object(cls):
     return cls()
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 def make_object[T](cls: type[T]) -> T:
     return cls()
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1623,7 +1770,8 @@ class Undergraduate:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import TypedDict
@@ -1638,6 +1786,8 @@ class Student(TypedDict):
 class Undergraduate(Student):
     major: str
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1665,7 +1815,8 @@ def is_string(value: Any):
     return isinstance(value, str)
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from typing import Any, TypeGuard
@@ -1673,6 +1824,8 @@ from typing import Any, TypeGuard
 def is_string(value: Any) -> TypeGuard[str]:
     return isinstance(value, str)
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1697,7 +1850,8 @@ class MyContainer:
     ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from _typeshed import SupportsItemAccess
@@ -1705,6 +1859,8 @@ from _typeshed import SupportsItemAccess
 class MyContainer(SupportsItemAccess):
     ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1737,13 +1893,16 @@ class Array:
         ...
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 class Array[*Ts]:
     def __add__(self, other: "Array[*Ts]") -> "Array[*Ts]":
         ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1784,7 +1943,8 @@ def transform(f):
     return wrapper
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Callable
@@ -1799,6 +1959,8 @@ def transform[**P, R](f: Callable[Concatenate[Person, P], R]):
 
     return wrapper
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1838,16 +2000,6 @@ def constructor_parameter[T](class_: T):
     ...
 ```
 
-Решение:
-
-```python
-```
-
-Тестовые примеры:
-
-```python
-```
-
 ### Декоратор, добавляющий параметр {#self-casting}
 
 Аннотируйте декоратор класса `Fn`, который принимает вызываемый объект `f`.
@@ -1864,7 +2016,8 @@ class Fn:
         ...
 ```
 
-Решение (python >= 3.12):
+<details>
+<summary>Решение (python >= 3.12)</summary>
 
 ```python
 from collections.abc import Callable
@@ -1878,7 +2031,10 @@ class Fn[**P, R]:
         ...
 ```
 
-Решение (python < 3.12):
+</details>
+
+<details>
+<summary>Решение (python < 3.12)</summary>
 
 ```python
 R = TypeVar("R")
@@ -1891,6 +2047,8 @@ class Fn(Generic[R, P]):
     def transform_callable(self) -> Callable[Concatenate[object, P], R]:
         ...
 ```
+
+</details>
 
 Тестовые примеры:
 
@@ -1922,7 +2080,8 @@ def g(a):
     pass
 ```
 
-Решение:
+<details>
+<summary>Решение</summary>
 
 ```python
 from collections.abc import Sequence
@@ -1933,6 +2092,8 @@ def f(a: list[int | str]):
 def g(a: Sequence[int | str]):
     pass
 ```
+
+</details>
 
 Тестовые примеры:
 

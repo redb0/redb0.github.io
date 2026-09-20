@@ -14,6 +14,9 @@ TIMEZONE = "Asia/Krasnoyarsk"
 
 DEFAULT_LANG = "ru"
 LOCALE = ["ru_RU.UTF-8", "ru_RU.utf8", "C.UTF-8"]
+DATE_FORMATS = {
+    "ru": "%-d %B %Y",
+}
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -34,6 +37,8 @@ AUTHOR_FEED_RSS = None
 SOCIAL = (
     ("GitHub", "https://github.com/redb0", "github"),
     ("LinkedIn", "https://www.linkedin.com/in/vladimir-voronov-976a0b365/", "linkedin"),
+    ("hh", "https://hh.ru/resume/f5d0e0feff085997e40039ed1f4e6376783858", "hh"),
+    ("Сетка", "https://set.ki/3Covzkh", "setka"),
     ("Telegram", "https://t.me/vs_voronov", "telegram"),
     ("Канал", "https://t.me/lazy_pythonists", "telegram-channel"),
     ("Email", "mailto:info@vladimir-voronov.ru", "email"),
@@ -84,7 +89,9 @@ PAGE_URL = "{slug}/"
 PAGE_SAVE_AS = "{slug}/index.html"
 DRAFT_PAGE_URL = "drafts/pages/{slug}/"
 DRAFT_PAGE_SAVE_AS = DRAFT_PAGE_URL + "index.html"
-AUTHOR_SAVE_AS = CATEGORY_SAVE_AS = ""
+AUTHOR_SAVE_AS = ""
+CATEGORY_URL = "category/{slug}/"
+CATEGORY_SAVE_AS = CATEGORY_URL + "index.html"
 TAG_URL = "tags/{slug}/"
 TAG_SAVE_AS = "tags/{slug}/index.html"
 ARCHIVES_URL = "archives/"
@@ -97,6 +104,32 @@ SITEMAP = {
     "changefreqs": {"articles": "weekly", "indexes": "weekly", "pages": "monthly"},
 }
 
-# Disable "authors" and "categories" pages
+# Страницы авторов выключены; категории включены (CATEGORY_SAVE_AS).
 DIRECT_TEMPLATES = ["index", "tags", "archives"]
 DELETE_OUTPUT_DIRECTORY = True
+
+
+from feedgenerator import Rss201rev2Feed
+from pelican import signals
+from pelican.writers import Writer as PelicanWriter
+
+
+class SummaryAtomWriter(PelicanWriter):
+    """Atom без полного HTML статьи — в фиде только summary."""
+
+    def _add_item_to_the_feed(self, feed, item):
+        if isinstance(feed, Rss201rev2Feed):
+            return super()._add_item_to_the_feed(feed, item)
+        orig = item.get_content
+        item.get_content = lambda siteurl=None: None
+        try:
+            return super()._add_item_to_the_feed(feed, item)
+        finally:
+            item.get_content = orig
+
+
+def _get_writer(_pelican):
+    return SummaryAtomWriter
+
+
+signals.get_writer.connect(_get_writer)

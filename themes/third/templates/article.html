@@ -41,7 +41,7 @@
 		<header>
 			<h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1><!--
 			--><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
-			--><p class="category">{{ article.category }}</p>
+			--><p class="category"><a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></p>
 			{% if article.tags %}
 			<ul class="tags">
 			{% for tag in article.tags %}

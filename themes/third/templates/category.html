@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} - Статьи в категории "{{ category }}"{% endblock %}
+{% block og_url %}{{ SITEURL }}/{{ category.url }}{% endblock %}
+{% block head %}
+{{ super() }}
+	<link rel="canonical" href="{{ SITEURL }}/{{ category.url }}">
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+<section>
+	<h1>Статьи в категории <span class="text-muted">"{{ category }}"</span></h1>
+	{% if articles_page.object_list %}
+	{% for article in articles_page.object_list %}
+	<article>
+		<time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
+		--><h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+	</article>
+	{% endfor %}
+	{% include "pagination.html" %}
+	{% else %}
+	<p class="empty-state">Нет статей в этой категории.</p>
+	{% endif %}
+</section>
+</div>
+{% endblock content %}
