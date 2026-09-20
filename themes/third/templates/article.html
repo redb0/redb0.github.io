@@ -1,26 +1,76 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - {{ article.title }}{% endblock %}
-{% block description %}{{ article.description or super() }}{% endblock %}
+{% block description %}{{ article.description or article.summary|striptags|truncate(200) or super() }}{% endblock %}
+{% block og_url %}{{ SITEURL }}/{{ article.url }}{% endblock %}
+{% block og_type %}article{% endblock %}
 {% block head %}
 {{ super() }}
 	<link rel="canonical" href="{{ SITEURL }}/{{ article.url }}">
+	{% if article.tags %}
 	{% for tag in article.tags %}
 	<meta name="tags" content="{{ tag }}">
 	{% endfor %}
+	{% endif %}
 {% endblock head %}
+
+{% block extra_jsonld %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"headline": {{ article.title|tojson }},
+		"description": {{ (article.description or article.summary|striptags|truncate(200) or SITEDESC)|tojson }},
+		"datePublished": {{ article.date.isoformat()|tojson }},
+		{% if article.modified %}
+		"dateModified": {{ article.modified.isoformat()|tojson }},
+		{% endif %}
+		"url": {{ (SITEURL ~ "/" ~ article.url)|tojson }},
+		"image": {{ (SITEURL ~ "/" ~ OG_IMAGE)|tojson }},
+		"inLanguage": {{ DEFAULT_LANG|tojson }},
+		"author": {
+			"@type": "Person",
+			"name": {{ (article.author|string if article.author else AUTHOR)|tojson }}
+		}
+	}
+	</script>
+{% endblock %}
 
 {% block content %}
 <div class="container">
-	<article role="article">
+	<article>
 		<header>
 			<h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1><!--
 			--><time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
 			--><p class="category">{{ article.category }}</p>
+			{% if article.tags %}
+			<ul class="tags">
+			{% for tag in article.tags %}
+				<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a></li>
+			{% endfor %}
+			</ul>
+			{% endif %}
 		</header>
 		<div class="content">
-			{% if article.cover %}<img class="cover" src="{{ SITEURL }}/{{ article.cover }}" />{% endif %}
+			{% if article.cover %}<img class="cover" src="{{ SITEURL }}/{{ article.cover }}" alt="{{ article.title }}" />{% endif %}
 			{{ article.content }}
 		</div>
+		{% set nav = namespace(newer=None, older=None) %}
+		{% for a in articles %}
+			{% if a == article %}
+				{% if not loop.first %}{% set nav.newer = articles[loop.index0 - 1] %}{% endif %}
+				{% if not loop.last %}{% set nav.older = articles[loop.index0 + 1] %}{% endif %}
+			{% endif %}
+		{% endfor %}
+		{% if nav.newer or nav.older %}
+		<nav class="article-nav" aria-label="Соседние статьи">
+			{% if nav.newer %}
+			<a class="newer" href="{{ SITEURL }}/{{ nav.newer.url }}">← {{ nav.newer.title }}</a>
+			{% endif %}
+			{% if nav.older %}
+			<a class="older" href="{{ SITEURL }}/{{ nav.older.url }}">{{ nav.older.title }} →</a>
+			{% endif %}
+		</nav>
+		{% endif %}
 	</article>
 </div>
 {% endblock content %}

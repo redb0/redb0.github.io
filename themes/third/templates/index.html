@@ -8,13 +8,21 @@
 {% block content %}
 <div class="container">
 <section>
-	<!-- <h1>Статьи</h1> -->
+	<h1>Статьи</h1>
+	{% if articles_page.object_list %}
 	{% for article in articles_page.object_list %}
 	<article>
 		<time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time><!--
-		--><h1><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h1>
+		--><h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+		{% if article.summary %}
+		<p class="excerpt">{{ article.summary|striptags|truncate(220) }}</p>
+		{% endif %}
 	</article>
 	{% endfor %}
+	{% include "pagination.html" %}
+	{% else %}
+	<p class="empty-state">Пока нет опубликованных статей.</p>
+	{% endif %}
 </section>
 </div>
 {% endblock content %}

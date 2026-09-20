@@ -46,10 +46,12 @@ COPYRIGHT_YEAR = date.today().year
 THEME = "themes/third"
 
 STATIC_PATHS = ("extras",)
+OG_IMAGE = "og.jpg"
 EXTRA_PATH_METADATA = {
     "extras/favicon.ico": {"path": "favicon.ico"},
     "extras/robots.txt": {"path": "robots.txt"},
     "extras/site.webmanifest": {"path": "site.webmanifest"},
+    "extras/og.jpg": {"path": OG_IMAGE},
 }
 
 PLUGINS = [webassets, sitemap]
