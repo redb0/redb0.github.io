@@ -49,14 +49,19 @@ function initBuzzword() {
 	];
 
 	var container = document.getElementById("buzzword");
-	if (!container || typeof Typed === "undefined") {
+	if (!container) {
+		return;
+	}
+	var word = buzzwords[Math.floor(Math.random() * buzzwords.length)];
+	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || typeof Typed === "undefined") {
+		container.innerHTML = word;
 		return;
 	}
 	// element content must be cleaned for typed.js
 	container.innerHTML = "";
 
 	new Typed("#buzzword", {
-		strings: [buzzwords[Math.floor(Math.random() * buzzwords.length)]],
+		strings: [word],
 		typeSpeed: 30,
 		loop: false,
 		showCursor: true,
