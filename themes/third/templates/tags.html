@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - Теги{% endblock %}
-{% block content %}
+{% block og_url %}{{ SITEURL }}/{{ TAGS_URL }}{% endblock %}
 {% block head %}
 {{ super() }}
 	<link rel="canonical" href="{{ SITEURL }}/{{ TAGS_URL }}">
 {% endblock head %}
 
+{% block content %}
 <div class="container">
 <section>
-    <h1>Теги</h1>
-    <ul class="inline">
-    {% for tag, articles in tags|sort %}
-        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag.name }} <small class="text-muted">({{ articles|count }})</small></a></li>
-    {% endfor %}
-    </ul>
+	<h1>Теги</h1>
+	{% if tags %}
+	<ul class="inline">
+	{% for tag, articles in tags|sort %}
+		<li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag.name }} <small class="text-muted">({{ articles|count }})</small></a></li>
+	{% endfor %}
+	</ul>
+	{% else %}
+	<p class="empty-state">Пока нет тегов.</p>
+	{% endif %}
 </section>
 </div>
 {% endblock content %}

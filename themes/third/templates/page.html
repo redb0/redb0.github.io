@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - {{ page.title }}{% endblock %}
 {% block description %}{{ page.description or super() }}{% endblock %}
+{% block og_url %}{{ SITEURL }}/{{ page.url }}{% endblock %}
 {% block head %}
 {{ super() }}
 	<link rel="canonical" href="{{ SITEURL }}/{{ page.url }}">
+	{% if page.tags %}
 	{% for tag in page.tags %}
 	<meta name="tags" content="{{ tag }}">
 	{% endfor %}
+	{% endif %}
 {% endblock head %}
 
 {% block content %}
-<div class="container">
-	<!-- <h1>{{ page.title }}</h1> -->
+<div class="container page-body">
+	<h1>{{ page.title }}</h1>
 	{{ page.content }}
 </div>
 {% endblock content %}

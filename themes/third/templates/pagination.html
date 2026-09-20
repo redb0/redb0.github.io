@@ -1,0 +1,11 @@
+{% if DEFAULT_PAGINATION and articles_page and articles_page.has_other_pages() %}
+<nav class="pagination" aria-label="Страницы">
+	{% if articles_page.has_previous() %}
+		<a href="{{ SITEURL }}/{{ articles_previous_page.url }}" rel="prev">← Назад</a>
+	{% endif %}
+	<span class="pagination-status">{{ articles_page.number }} / {{ articles_paginator.num_pages }}</span>
+	{% if articles_page.has_next() %}
+		<a href="{{ SITEURL }}/{{ articles_next_page.url }}" rel="next">Вперёд →</a>
+	{% endif %}
+</nav>
+{% endif %}

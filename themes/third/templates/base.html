@@ -18,20 +18,54 @@
 	<meta name="msapplication-TileColor" content="#fafbfc">
 	<meta name="theme-color" content="#ffffff">
 	<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+	<meta property="og:site_name" content="{{ SITENAME }}">
+	<meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+	<meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}">
+	<meta property="og:url" content="{% block og_url %}{{ SITEURL }}/{% endblock %}">
+	<meta property="og:type" content="{% block og_type %}website{% endblock %}">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:image" content="{{ SITEURL }}/{{ OG_IMAGE }}">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="{{ self.og_title() }}">
+	<meta name="twitter:description" content="{{ self.og_description() }}">
+	<meta name="twitter:image" content="{{ SITEURL }}/{{ OG_IMAGE }}">
 	{% assets filters="cssmin", output="style.min.css", "css/normalize.css", "css/pygments.css", "css/style.css", "css/admonition.css" %}
 		<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
 	{% endassets %}
 	<link rel="icon" href="{{ SITEURL }}/favicon.ico">
 	<link rel="manifest" href="{{ SITEURL }}/site.webmanifest">
+	{% if FEED_ALL_ATOM %}
+	<link rel="alternate" type="application/atom+xml" title="{{ SITENAME }}" href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}">
+	{% endif %}
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": {{ AUTHOR|tojson }},
+		"url": {{ (SITEURL ~ "/")|tojson }},
+		"description": {{ SITEDESC|tojson }}
+		{%- if SOCIAL -%}
+		,
+		"sameAs": [
+			{%- for link in SOCIAL if link|length >= 2 -%}
+			{{ link[1]|tojson }}{% if not loop.last %},{% endif %}
+			{%- endfor -%}
+		]
+		{%- endif %}
+	}
+	</script>
+	{% block extra_jsonld %}{% endblock %}
 	{% endblock head %}
 </head>
-<body role="document">
+<body>
+	<a class="skip-link" href="#main">К содержанию</a>
 	<div id="page">
 		<header id="header">
 			<div class="container">
-				<h1><a href="{{ SITEURL }}/">{{ SITENAME }}{% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></h1>
+				<p class="site-title"><a href="{{ SITEURL }}/">{{ SITENAME }}{% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></p>
 				<p id="sentence" class="text-muted">&#127839; &amp; <span id="buzzword">tech</span></p>
-				<nav role="navigation">
+				<nav>
 					<ul>
 						<li><a{% if not page %} class="active"{% endif %} href="{{ SITEURL }}/" title="блог">Блог</a></li>
 					{% if DISPLAY_PAGES_ON_MENU %}
@@ -43,11 +77,20 @@
 				</nav>
 			</div>
 		</header>
-		<div id="main" role="main">
+		<div id="main">
 			{% block content %}
 			{% endblock content %}
 		</div>
-		<footer id="footer" role="contentinfo">
+		<footer id="footer">
+			<p class="footer-nav">
+				<a href="{{ SITEURL }}/{{ ARCHIVES_URL }}">Архив</a>
+				·
+				<a href="{{ SITEURL }}/{{ TAGS_URL }}">Теги</a>
+				{% if FEED_ALL_ATOM %}
+				·
+				<a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}">RSS</a>
+				{% endif %}
+			</p>
 			<p><small>{% if COPYRIGHT_YEAR %}&copy; {{ COPYRIGHT_YEAR }} {{ AUTHOR }}<br>{% endif %} Сайт сгенерирован с помощью <a href="https://blog.getpelican.com/">Pelican</a>{% if HOSTING_NAME %} и размещен на <a href="{{ HOSTING_URL }}">{{ HOSTING_NAME }}</a>{% endif %}</small></p>
 			{% if SOCIAL %}
 			<div class="social-icons">
