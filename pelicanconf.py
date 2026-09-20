@@ -5,7 +5,7 @@ from pelican.plugins import sitemap, webassets
 AUTHOR = "Vladimir Voronov"
 SITENAME = "Vladimir Voronov"
 SITEURL = ""
-SITEDESC = "Личный сайт Python разработчика"
+SITEDESC = "Python-разработчик. Backend: FastAPI, PostgreSQL"
 
 PATH = "content"
 
@@ -28,13 +28,9 @@ AUTHOR_FEED_RSS = None
 #     ("You can modify those links in your config file", "#"),
 # )
 
-# Social widget
+# Social widget: (название, url[, имя иконки в includes/social/<name>.svg])
 SOCIAL = (
-    (
-        "GitHub",
-        "https://github.com/redb0",
-        open("content/extras/social/github.svg").read(),
-    ),
+    ("GitHub", "https://github.com/redb0", "github"),
 )
 
 DEFAULT_PAGINATION = 10
@@ -59,6 +55,7 @@ PLUGINS = [webassets, sitemap]
 # Порядок вывода страниц в навигации
 PAGE_ORDER_BY = "order"
 
+# Fallback, если в статье нет Category. У всех текущих статей поле задано явно.
 DEFAULT_CATEGORY = "misc"
 USE_FOLDER_AS_CATEGORY = False
 
@@ -91,7 +88,7 @@ TAGS_SAVE_AS = TAGS_URL + "index.html"
 
 SITEMAP = {
     "format": "xml",
-    "changefreqs": {"articles": "weekly", "indexes": "daily", "pages": "monthly"},
+    "changefreqs": {"articles": "weekly", "indexes": "weekly", "pages": "monthly"},
 }
 
 # Disable "authors" and "categories" pages
