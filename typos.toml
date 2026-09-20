@@ -1,0 +1,13 @@
+[files]
+extend-exclude = [
+    # Список исправленных опечаток в бэклоге
+    "tasks.md",
+    "themes/third/static/js/typed.js",
+    "uv.lock",
+]
+
+[default]
+extend-ignore-re = [
+    # unicode-range: U+0100-02BA — «BA» не слово
+    "(?i)unicode-range:\\s*[^;]+",
+]

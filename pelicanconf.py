@@ -12,6 +12,7 @@ PATH = "content"
 TIMEZONE = "Asia/Krasnoyarsk"
 
 DEFAULT_LANG = "ru"
+LOCALE = ["ru_RU.UTF-8", "ru_RU.utf8", "C.UTF-8"]
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None

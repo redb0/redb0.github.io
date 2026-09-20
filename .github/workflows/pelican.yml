@@ -1,16 +1,72 @@
+# Свой workflow вместо getpelican/pelican/.github/workflows/github_pages.yml@main:
+# reusable не ставит ru_RU.UTF-8 и ставит pip, не uv.
+# Экшены запинены на SHA; обновления — Dependabot (github-actions).
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches: ["main"]
+  pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: crate-ci/typos@512fc24f32f44ab01972217aaaf3dc86ec234d53 # v1.50.2
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install ru_RU.UTF-8
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen ru_RU.UTF-8
+
+      - uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+        with:
+          python-version: "3.11"
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --frozen --no-dev
+
+      - name: Check requirements.txt matches uv.lock
+        run: |
+          uv export --frozen --no-dev --no-hashes --no-header -o /tmp/requirements.txt
+          tail -n +3 requirements.txt | diff -u - /tmp/requirements.txt
+
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Build Pelican site
+        env:
+          LANG: ru_RU.UTF-8
+          LC_ALL: ru_RU.UTF-8
+        run: uv run --frozen pelican content -s publishconf.py
+
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: output
+
   deploy:
-    uses: "getpelican/pelican/.github/workflows/github_pages.yml@main"
-    permissions:
-      contents: "read"
-      pages: "write"
-      id-token: "write"
-    with:
-      settings: "publishconf.py"
-      requirements: "-r requirements.txt"
-      python: "3.11"
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: [build, typos]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

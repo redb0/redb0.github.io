@@ -5,8 +5,14 @@ description = "Личный сайт Python-разработчика Влади�
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "cssmin>=0.2.0",
+    "cssmin>=0.2.0",  # JS не минифицируется; rjsmin не ставим, пока не вернём filters="rjsmin"
     "pelican-sitemap>=1.2.0",
     "pelican-webassets>=2.1.0",
     "pelican[markdown]>=4.11.0",
+]
+
+[dependency-groups]
+dev = [
+    "invoke>=2.2.0",
+    "livereload>=2.7.0",
 ]
