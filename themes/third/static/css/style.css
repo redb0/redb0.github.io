@@ -303,6 +303,16 @@ blockquote {
 	padding-top: 2rem;
 }
 
+.intro {
+	margin-bottom: 3rem;
+	font-size: 1.8rem;
+	line-height: 2.6rem;
+}
+
+.intro .cta {
+	margin-top: 1rem;
+}
+
 article .content {
 	text-align: justify;
 }

@@ -47,12 +47,22 @@
 		"url": {{ (SITEURL ~ "/")|tojson }},
 		"description": {{ SITEDESC|tojson }}
 		{%- if SOCIAL -%}
+		{%- for link in SOCIAL if link|length >= 2 and link[1].startswith("mailto:") -%}
+		,
+		"email": {{ link[1]|tojson }}
+		{%- endfor -%}
+		{%- set ns = namespace(profiles=[]) -%}
+		{%- for link in SOCIAL if link|length >= 2 and link[1].startswith("http") -%}
+		{%- set ns.profiles = ns.profiles + [link[1]] -%}
+		{%- endfor -%}
+		{%- if ns.profiles -%}
 		,
 		"sameAs": [
-			{%- for link in SOCIAL if link|length >= 2 -%}
-			{{ link[1]|tojson }}{% if not loop.last %},{% endif %}
+			{%- for url in ns.profiles -%}
+			{{ url|tojson }}{% if not loop.last %}, {% endif %}
 			{%- endfor -%}
 		]
+		{%- endif -%}
 		{%- endif %}
 	}
 	</script>
@@ -68,12 +78,12 @@
 				<p id="sentence" class="text-muted">&#127839; &amp; <span id="buzzword">tech</span></p>
 				<nav>
 					<ul>
-						<li><a{% if not page %} class="active"{% endif %} href="{{ SITEURL }}/" title="блог">Блог</a></li>
 					{% if DISPLAY_PAGES_ON_MENU %}
 						{% for p in pages %}
-						<li><a{% if p == page %} class="active"{% endif %} href="{{ SITEURL}}/{{ p.url }}">{{ p.title }}</a></li>
+						<li><a{% if p == page %} class="active"{% endif %} href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
 						{% endfor %}
 					{% endif %}
+						<li><a{% block nav_blog_attrs %}{% endblock %} href="{{ SITEURL }}/" title="блог">Блог</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -97,7 +107,11 @@
 			<div class="social-icons">
 			{% for link in SOCIAL %}
 				{% if link|length >= 2 %}
+				{% if link[1].startswith("http") %}
 				<span><a href="{{ link[1] }}" title="{{ link[0] }}" target="_blank" rel="me noopener noreferrer">{% if link|length > 2 %}{% include "includes/social/" ~ link[2] ~ ".svg" %}{% else %}{{ link[0] }}{% endif %}</a></span>
+				{% else %}
+				<span><a href="{{ link[1] }}" title="{{ link[0] }}" rel="me">{% if link|length > 2 %}{% include "includes/social/" ~ link[2] ~ ".svg" %}{% else %}{{ link[0] }}{% endif %}</a></span>
+				{% endif %}
 				{% endif %}
 			{% endfor %}
 			</div>

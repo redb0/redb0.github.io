@@ -32,6 +32,10 @@ AUTHOR_FEED_RSS = None
 # Social widget: (название, url[, имя иконки в includes/social/<name>.svg])
 SOCIAL = (
     ("GitHub", "https://github.com/redb0", "github"),
+    ("LinkedIn", "https://www.linkedin.com/in/vladimir-voronov-976a0b365/", "linkedin"),
+    ("Telegram", "https://t.me/vs_voronov", "telegram"),
+    ("Канал", "https://t.me/lazy_pythonists", "telegram-channel"),
+    ("Email", "mailto:info@vladimir-voronov.ru", "email"),
 )
 
 DEFAULT_PAGINATION = 10
