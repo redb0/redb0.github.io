@@ -1,9 +1,11 @@
 Slug: about
 Order: 001
 Title: Обо мне
+Description: Python-разработчик, Москва. Backend: FastAPI, gRPC, PostgreSQL. Открыт к предложениям.
 
-Этот блог используется для организации интересных статей, проектов,
-веб-сайтов и моих заметок для чтения/изучения.
+Python-разработчик, сейчас ведущий инженер в [НТР](https://mwnts.ru/). Backend: Python, FastAPI, gRPC, FastStream, PostgreSQL, ClickHouse. Проектирую микросервисы, занимаюсь производительностью и веду небольшую backend-команду.
+
+Открыт к предложениям: удалённо или гибрид, Москва.
 
 ## Контакты {#contacts}
 
@@ -13,3 +15,4 @@ Title: Обо мне
 - Сетка: [профиль](https://set.ki/3Covzkh)
 - Email: [info@vladimir-voronov.ru](mailto:info@vladimir-voronov.ru)
 - Канал: [Ленивые питонисты и гошники](https://t.me/lazy_pythonists)
+- CV: [страница](/cv/) · [PDF](/cv.pdf)

@@ -467,6 +467,44 @@ dt {
 	margin-top: 0;
 }
 
+.page-body .cv-role,
+.page-body .cv-status,
+.page-body .cv-contacts {
+	margin: 0.2rem 0;
+	font-size: 1.6rem;
+	line-height: 2.6rem;
+}
+
+.page-body .cv-role {
+	margin-top: 0;
+	font-weight: 500;
+}
+
+.page-body .cv-status,
+.page-body .cv-contacts {
+	color: #8e908c;
+}
+
+.page-body .cv-contacts {
+	margin-bottom: 2.4rem;
+}
+
+.page-body .cert {
+	display: flex;
+	align-items: center;
+	gap: 1.2rem;
+	margin: 0.8rem 0 0;
+	font-size: 1.6rem;
+	line-height: 2.4rem;
+	color: #8e908c;
+}
+
+.page-body .cert img {
+	display: block;
+	width: 7.2rem;
+	height: 7.2rem;
+}
+
 .page-body h2,
 .page-body h3,
 .page-body h4 {

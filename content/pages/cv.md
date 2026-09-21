@@ -1,8 +1,31 @@
 Slug: cv
 Order: 003
 Title: CV
+Description: Python-разработчик, Москва. Открыт к предложениям. Backend: FastAPI, gRPC, PostgreSQL.
+
+<p class="cv-role">Python-разработчик · Москва · удалённо / гибрид</p>
+<p class="cv-status">Открыт к предложениям</p>
+<p class="cv-contacts"><a href="https://t.me/vs_voronov">Telegram</a> · <a href="mailto:info@vladimir-voronov.ru">Email</a> · <a href="https://hh.ru/resume/f5d0e0feff085997e40039ed1f4e6376783858">hh</a> · <a href="/cv.pdf" download="voronov-cv.pdf">Скачать PDF</a></p>
 
 ## Опыт работы {#experience}
+
+### [Новые Телеком Решения](https://mwnts.ru/) <span class="job-dates">Май 2025 — настоящее время</span>
+
+#### Ведущий инженер-программист
+
+- Проектировал и разрабатывал микросервисы [OSS мониторинга сетевых элементов](../projects#oss) (gRPC, RabbitMQ, FastStream)
+- Оптимизировал API и очереди под нагрузку около 5000 RPS
+- Рефакторил распределённый монолит: чистая архитектура, mypy, ruff
+- Техлид команды из 3 backend-разработчиков: декомпозиция, бэклог, код-ревью
+- Внедрил ADR — архитектурные решения стали прозрачными для команды
+
+> Ускорил запросы к API в 8–10 раз (с 2 с до 200 мс) за счёт кода и индексов БД
+
+> Мигрировал микросервис подписок с Celery на FastStream: производительность выросла в 80 раз, потребление ресурсов снизилось в 5 раз
+
+> Заменил самописный Django API Gateway на gRPC-Gateway: новое API с 2 часов до 2–3 минут
+
+---
 
 ### [Сила Разработка](https://sd.sila.ru/) <span class="job-dates">Май 2024 — Апрель 2025</span>
 
@@ -14,6 +37,10 @@ Title: CV
 - Участвовал в разработке [приложения спецификации оборудования](../projects#spec)
 - Занимался проектированием архитектуры
 - Выступал в роли техлида команды
+
+> SDK сократил время разработки типовых фич новых микросервисов с 2 дней до 2 часов
+
+> Обязательное код-ревью и mypy снизили количество багов в продакшене на 30% за 3 месяца
 
 ---
 
@@ -52,6 +79,10 @@ Title: CV
 
     > Плагин для `mkdocs` конвертировал и размещал документацию в Confluence
 
+    > Централизованное логирование через ELK снизило среднее время поиска инцидентов (MTTR) с 40 минут до 5 минут
+
+    > Батчирование в обработке событий Kafka снизило нагрузку на CPU на 25%
+
 ---
 
 ### [Красцветмет. ИТ](https://kit-digital.ru/) <span class="job-dates">Январь 2023 — Июль 2023</span>
@@ -81,21 +112,13 @@ Title: CV
 
 ## Навыки {#skills}
 
-Языки программирования:
+Языки программирования: **Python**, Go
 
-**Python**
+Базы данных: **PostgreSQL**, ClickHouse, Redis, MongoDB, YDB, SQLite
 
-Базы данных:
+Фреймворки: **FastAPI**, Django, FastStream, gRPC
 
-PostgreSQL, MongoDB, SQLite, YDB, Redis, ClickHouse
-
-Фреймворки:
-
-**FastAPI**, Django
-
-Инструменты:
-
-Git, Docker, Celery, Kafka, RabbitMQ, Vault, Jira, Jupyter Notebook, Material for MkDocs, Pytest, SQLAlchemy, GitLab, Dash
+Инструменты: Git, Docker, Kubernetes, Celery, Kafka, RabbitMQ, Vault, Keycloak, Pytest, SQLAlchemy, GitLab CI, Prometheus, Grafana, Jira
 
 ---
 
@@ -112,3 +135,10 @@ Git, Docker, Celery, Kafka, RabbitMQ, Vault, Jira, Jupyter Notebook, Material fo
 ### Бакалавриат <span class="job-dates">2013 — 2017</span>
 
 **Прикладная информатика**, Сибирский Федеральный Университет, Институт управления бизнес-процессами
+
+### SAFe 6 Practitioner <span class="job-dates">2026</span>
+
+<p class="cert">
+<a href="/safe-6-practitioner.pdf"><img src="/safe-6-practitioner.png" alt="Certified SAFe 6 Practitioner" width="72" height="72"></a>
+<span>Certified SAFe 6 Practitioner, до 1 апреля 2027. <a href="/safe-6-practitioner.pdf">PDF</a></span>
+</p>

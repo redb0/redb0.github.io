@@ -6,7 +6,7 @@ AUTHOR = "Vladimir Voronov"
 SITENAME = "Vladimir Voronov"
 SITEURL = ""
 SITEROLE = "Python-разработчик"
-SITEDESC = f"{SITEROLE}. Backend: FastAPI, PostgreSQL"
+SITEDESC = f"{SITEROLE}. Backend: FastAPI, gRPC, PostgreSQL"
 
 PATH = "content"
 
@@ -59,6 +59,9 @@ EXTRA_PATH_METADATA = {
     "extras/robots.txt": {"path": "robots.txt"},
     "extras/site.webmanifest": {"path": "site.webmanifest"},
     "extras/og.jpg": {"path": OG_IMAGE},
+    "extras/cv.pdf": {"path": "cv.pdf"},
+    "extras/safe-6-practitioner.png": {"path": "safe-6-practitioner.png"},
+    "extras/safe-6-practitioner.pdf": {"path": "safe-6-practitioner.pdf"},
 }
 
 PLUGINS = [webassets, sitemap]
