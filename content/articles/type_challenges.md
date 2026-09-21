@@ -6,7 +6,7 @@ Summary: Для тренировки и проверки навыков типи
 Title: Прохождение Python Type Challenges
 
 Для тренировки и проверки навыков типизации в Python есть интересный
-челлендж - [Python Type Challenges](https://python-type-challenges.zeabur.app/).
+челлендж - [Python Type Challenges](https://github.com/laike9m/Python-Type-Challenges).
 На сайте можно непосредственно выполнять задания и тут же их проверять.
 
 Всего 4 уровня сложности:
