@@ -34,7 +34,8 @@
 	{% assets filters="cssmin", output="style.min.css", "css/normalize.css", "css/pygments.css", "css/style.css", "css/admonition.css" %}
 		<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}" />
 	{% endassets %}
-	<link rel="icon" href="{{ SITEURL }}/favicon.ico">
+	<link rel="icon" href="{{ SITEURL }}/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="{{ SITEURL }}/favicon.ico" sizes="48x48">
 	<link rel="manifest" href="{{ SITEURL }}/site.webmanifest">
 	{% if FEED_ALL_ATOM %}
 	<link rel="alternate" type="application/atom+xml" title="{{ SITENAME }}" href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}">

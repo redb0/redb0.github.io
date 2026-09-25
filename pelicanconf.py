@@ -56,6 +56,7 @@ STATIC_PATHS = ("extras",)
 OG_IMAGE = "og.jpg"
 EXTRA_PATH_METADATA = {
     "extras/favicon.ico": {"path": "favicon.ico"},
+    "extras/favicon.svg": {"path": "favicon.svg"},
     "extras/robots.txt": {"path": "robots.txt"},
     "extras/site.webmanifest": {"path": "site.webmanifest"},
     "extras/og.jpg": {"path": OG_IMAGE},
