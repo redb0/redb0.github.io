@@ -1,6 +1,7 @@
 Slug: projects
 Order: 002
 Title: Проекты
+Description: Проекты Python-разработчика: OSS, корпоративная SDK, мониторинг, оптимизация перевозок и раскроя.
 
 <!-- https://github.com/simple-icons/simple-icons/blob/develop/slugs.md -->
 

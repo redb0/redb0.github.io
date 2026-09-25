@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - Статьи в категории "{{ category }}"{% endblock %}
+{% block description %}Статьи в категории {{ category }}.{% endblock %}
 {% block og_url %}{{ SITEURL }}/{{ category.url }}{% endblock %}
 {% block head %}
 {{ super() }}

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ SITENAME }} - Статьи с тегами "{{ tag }}"{% endblock %}
+{% block description %}Статьи с тегом {{ tag }}.{% endblock %}
 {% block og_url %}{{ SITEURL }}/{{ tag.url }}{% endblock %}
 {% block head %}
 {{ super() }}
